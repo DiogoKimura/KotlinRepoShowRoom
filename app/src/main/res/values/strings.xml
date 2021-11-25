@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Kotlin Repositories</string>
+    <string name="introducing_text">Hello, \nWelcome to \nKotlin Repo Show Room</string>
+    <string name="click_here">Click here!</string>
+    <string name="loading">Loading Kotlin repositories…</string>
+    <string name="try_again">Try again...</string>
+</resources>
