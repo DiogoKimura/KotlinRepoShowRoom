@@ -31,26 +31,25 @@ public class AppSharedPreferences {
     private void putLastDownloadedPage(){
         int lastPage = getLastDownloadedPage();
         lastPage += 1;
-        editor.putInt(KEY_PAGES, lastPage);
+        putInt(KEY_PAGES, lastPage);
     }
     private int getLastDownloadedPage(){
-        return  preferences.getInt(KEY_PAGES, 0);
+        return  getInt(KEY_PAGES);
     }
     public void resetPage(){
         int lastPage = 0;
-        editor.putInt(KEY_PAGES, lastPage);
+        putInt(KEY_PAGES, lastPage);
     }
 
     public void setRepoList(RepoListItem repoListItem){
         String repoListString = new Gson().toJson(repoListItem);
         putString(KEY_REPO + getLastDownloadedPage(), repoListString);
-        Log.d("TAG", "Setou repolist: " + KEY_REPO + getLastDownloadedPage());
+        Log.d("KOTLIN", "Setou repolist: " + KEY_REPO + getLastDownloadedPage());
         putLastDownloadedPage();
     }
-
     public RepoListItem getRepoList(){
         String repoList = getString(KEY_REPO + getLastDownloadedPage());
-        Log.d("TAG", "Pegou repolist: " + KEY_REPO + getLastDownloadedPage());
+        Log.d("KOTLIN", "Pegou repolist: " + KEY_REPO + getLastDownloadedPage());
         if (repoList.equals(NULL_VALUE))return null;
         return new Gson().fromJson(repoList, RepoListItem.class);
     }

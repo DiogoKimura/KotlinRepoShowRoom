@@ -26,9 +26,14 @@ public class RepoListPresenter implements RepoListDataSource.RepoListCallback {
 
     public void getRepos(int page) {
         AppSharedPreferences appSharedPreferences = new AppSharedPreferences(context);
+        RepoListItem repoList = appSharedPreferences.getRepoList();
 
-        this.view.showProgressBar();
-        this.dataSource.getRepos("kotlin", "stars", Integer.toString(page), this);
+        if (repoList == null) {
+            this.view.showProgressBar();
+            this.dataSource.getRepos("kotlin", "stars", Integer.toString(page), this);
+        }else{
+            onSucess(repoList);
+        }
     }
 
     public void mockRepos() {
@@ -48,7 +53,7 @@ public class RepoListPresenter implements RepoListDataSource.RepoListCallback {
 
     @Override
     public void onError(String message) {
-        if (message.isEmpty())message = view.getString(R.string.try_again);
+        if (message.isEmpty()) message = view.getString(R.string.try_again);
         this.view.showFailure(message);
     }
 
